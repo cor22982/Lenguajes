@@ -1,6 +1,8 @@
 AVANCE =0
 INICIOLEXEMA =0
 LEXEMAS = []
+LECTOR =0
+LEXEMA = ""
 
 # Código base para iniciar
 def cargar_buffer(entrada, inicio, tamano_buffer):
@@ -10,24 +12,23 @@ def cargar_buffer(entrada, inicio, tamano_buffer):
   return buffer
 
 def procesar_buffer(buffer):
-  global AVANCE, INICIOLEXEMA, LEXEMAS
+  global AVANCE, INICIOLEXEMA, LEXEMAS, LEXEMA
   AVANCE = 0
   INICIOLEXEMA = 0
-  lexema = ""
   for i in range(len(buffer)) :
     caracter = buffer[AVANCE]
     if caracter == " " and AVANCE!=0:
       INICIOLEXEMA = i + 1
-      LEXEMAS.append(lexema)
+      LEXEMAS.append(LEXEMA)
       AVANCE = INICIOLEXEMA
-      lexema = ""
+      LEXEMA = ""
     
     else:
       AVANCE = i +1
       if caracter != " ":
-        lexema += caracter
+        LEXEMA += caracter
         if AVANCE == len(buffer):
-          LEXEMAS.append(lexema)
+          LEXEMAS.append(LEXEMA)
 
 # buffer = cargar_buffer(entrada, inicio, tamano_buffer)
 # print(buffer)
@@ -45,17 +46,21 @@ if __name__ == "__main__":
   # print(buffer)
   # procesar_buffer(buffer)
   # print(LEXEMAS)
+  buffer = cargar_buffer(entrada,20, tamano_buffer)
+  print(buffer)
   # print(AVANCE)
-  while AVANCE != len(entrada):
+  while LECTOR != len(entrada):
     if AVANCE == 0:
-      BUFFER1 = cargar_buffer(entrada, INICIOLEXEMA, tamano_buffer)
+      BUFFER1 = cargar_buffer(entrada, LECTOR, tamano_buffer)
       procesar_buffer(BUFFER1)
-      INICIOLEXEMA = len(BUFFER1)
+      LECTOR += len(BUFFER1)
     elif AVANCE== len(BUFFER1):
-      BUFFER2 = cargar_buffer(entrada, INICIOLEXEMA, tamano_buffer)
+      BUFFER2 = cargar_buffer(entrada, LECTOR, tamano_buffer)
       procesar_buffer(BUFFER2)
+      LECTOR += len(BUFFER2)
     elif AVANCE == len(BUFFER2):
-      BUFFER1 = cargar_buffer(entrada, INICIOLEXEMA, tamano_buffer)
+      BUFFER1 = cargar_buffer(entrada, LECTOR, tamano_buffer)
       procesar_buffer(BUFFER1)
+      LECTOR += len(BUFFER1)
   
   
