@@ -3,7 +3,6 @@ INICIOLEXEMA =0
 LEXEMAS = []
 LECTOR =0
 LEXEMA = ""
-FLAG_BUFFER = 1
 FLAG_SALIDA = True
 
 # Código base para iniciar
@@ -36,26 +35,15 @@ def procesar_buffer(buffer):
         LEXEMA += caracter
 
 if __name__ == "__main__":
-  BUFFER1 = []
-  BUFFER2 = []
+  BUFFER = []
   tamano_buffer = 10
   entrada = list("Esto es un ejemplo de entrada con eof")
 
   while FLAG_SALIDA:
-    if AVANCE == 0 and FLAG_BUFFER ==1:
-      BUFFER1 = cargar_buffer(entrada, LECTOR, tamano_buffer)
-      procesar_buffer(BUFFER1)
-      LECTOR += len(BUFFER1)
-    elif AVANCE == len(BUFFER1) and FLAG_BUFFER ==1:
-      BUFFER2 = cargar_buffer(entrada, LECTOR, tamano_buffer)
-      procesar_buffer(BUFFER2)
-      LECTOR += len(BUFFER2)
-      FLAG_BUFFER = 2
-    elif AVANCE == len(BUFFER2) and FLAG_BUFFER ==2:
-      BUFFER1 = cargar_buffer(entrada, LECTOR, tamano_buffer)
-      procesar_buffer(BUFFER1)
-      LECTOR += len(BUFFER1)
-      FLAG_BUFFER = 1
+    BUFFER1 = cargar_buffer(entrada, LECTOR, tamano_buffer)
+    procesar_buffer(BUFFER1)
+    LECTOR += len(BUFFER1)
+
 
   for i in LEXEMAS:
     print(f"Lexema procesado: {i}")
