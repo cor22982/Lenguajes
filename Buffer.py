@@ -28,7 +28,7 @@ def procesar_buffer(buffer):
     elif caracter =="eof":
       LEXEMAS.append(LEXEMA)
       FLAG_SALIDA = False
-      break
+      i = len(buffer)
 
     else:
       AVANCE = i +1
@@ -56,7 +56,8 @@ if __name__ == "__main__":
       procesar_buffer(BUFFER1)
       LECTOR += len(BUFFER1)
       FLAG_BUFFER = 1
-  
-  print(LEXEMAS)
+
+  for i in LEXEMAS:
+    print(f"Lexema procesado: {i}")
   
   
