@@ -37,7 +37,7 @@ def procesar_buffer(buffer):
 if __name__ == "__main__":
   BUFFER = []
   tamano_buffer = 10
-  entrada = list("Esto es un ejemplo de entrada con eof")
+  entrada = list("Esto es un ejemplo eof")
 
   while FLAG_SALIDA:
     BUFFER1 = cargar_buffer(entrada, LECTOR, tamano_buffer)
